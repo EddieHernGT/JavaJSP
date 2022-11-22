@@ -1,6 +1,8 @@
 package Models;
 
-import jakarta.persistence.*;
+import org.hibernate.annotations.Entity;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "reserva", schema = "salonesdb", catalog = "")
