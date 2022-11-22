@@ -1,4 +1,4 @@
-package Model;
+package Models;
 
 import jakarta.persistence.*;
 
@@ -99,5 +99,4 @@ public class AulaEntity {
     public void setReservasByNumAula(Collection<ReservaEntity> reservasByNumAula) {
         this.reservasByNumAula = reservasByNumAula;
     }
-
 }
