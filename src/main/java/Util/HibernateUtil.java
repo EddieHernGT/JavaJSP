@@ -11,7 +11,7 @@ public class HibernateUtil {
         try{
             sessionFactory=new Configuration().configure().buildSessionFactory();
         }catch(Throwable ex){
-            System.out.println("Error al crear la sesio :"+ex);
+            System.out.println("Error al crear la sesion :"+ex);
             throw new ExceptionInInitializerError(ex);
         }
         return sessionFactory;

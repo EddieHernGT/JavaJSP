@@ -1,6 +1,5 @@
 package Models;
 
-import org.hibernate.annotations.Entity;
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -18,10 +17,10 @@ public class ReservaEntity {
     @Column(name = "idusuario")
     private int idusuario;
     @ManyToOne
-    @JoinColumn(name = "numaula", referencedColumnName = "num_aula", nullable = false)
+    @JoinColumn(name = "numaula", referencedColumnName = "num_aula", nullable = false,updatable = false,insertable = false)
     private AulaEntity aulaByNumaula;
     @ManyToOne
-    @JoinColumn(name = "idusuario", referencedColumnName = "idusuario", nullable = false)
+    @JoinColumn(name = "idusuario", referencedColumnName = "idusuario", nullable = false,updatable = false,insertable = false)
     private UsuarioEntity usuarioByIdusuario;
 
     public int getIdreserva() {

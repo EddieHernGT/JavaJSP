@@ -1,6 +1,5 @@
 package Models;
 
-import org.hibernate.annotations.Entity;
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -23,8 +22,6 @@ public class AulaEntity {
     @Basic
     @Column(name = "estado")
     private byte estado;
-    @OneToMany(mappedBy = "aulaByNumaula")
-    private Collection<ReservaEntity> reservasByNumAula;
 
     public int getNumAula() {
         return numAula;
@@ -92,11 +89,14 @@ public class AulaEntity {
         return result;
     }
 
-    public Collection<ReservaEntity> getReservasByNumAula() {
-        return reservasByNumAula;
-    }
-
-    public void setReservasByNumAula(Collection<ReservaEntity> reservasByNumAula) {
-        this.reservasByNumAula = reservasByNumAula;
+    @Override
+    public String toString() {
+        return "AulaEntity{" +
+                "numAula=" + numAula +
+                ", capacidad=" + capacidad +
+                ", descripcion='" + descripcion + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", estado=" + estado +
+                '}';
     }
 }

@@ -10,13 +10,13 @@ import org.hibernate.Transaction;
 
 public class AulaDAO {
     public List<AulaEntity> seleccionarAula(){
-        List<AulaEntity> aulas= new ArrayList<AulaEntity>();
+        List<AulaEntity> aulas=new ArrayList<AulaEntity>();
         SessionFactory sessFac= HibernateUtil.getSessionFactory();
         Session session=sessFac.getCurrentSession();
         Transaction tr=null;
         try{
             tr=session.beginTransaction();
-            aulas=session.createQuery("SELECT a from Aula a",AulaEntity.class).getResultList();
+            aulas=session.createQuery("SELECT a from AulaEntity a",AulaEntity.class).getResultList();
         }catch (Exception e){
             if(tr!=null){
                 tr.rollback();
@@ -28,5 +28,25 @@ public class AulaDAO {
             sessFac.close();
         }
         return aulas;
+    }
+    public AulaEntity obtenerAula(int numAula){
+        AulaEntity aula=new AulaEntity();
+        SessionFactory sessFac= HibernateUtil.getSessionFactory();
+        Session session=sessFac.getCurrentSession();
+        Transaction tr=null;
+        try{
+            tr=session.beginTransaction();
+            aula= session.get(AulaEntity.class,numAula);
+        }catch (Exception e){
+            if(tr!=null){
+                tr.rollback();
+            }
+            e.printStackTrace();
+            aula=null;
+        }finally {
+            session.close();
+            sessFac.close();
+        }
+        return aula;
     }
 }

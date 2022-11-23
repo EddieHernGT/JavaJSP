@@ -1,6 +1,5 @@
 package Models;
 
-import org.hibernate.annotations.Entity;
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -29,8 +28,7 @@ public class UsuarioEntity {
     @Basic
     @Column(name = "username")
     private String username;
-    @OneToMany(mappedBy = "usuarioByIdusuario")
-    private Collection<ReservaEntity> reservasByIdusuario;
+
 
     public int getIdusuario() {
         return idusuario;
@@ -118,11 +116,4 @@ public class UsuarioEntity {
         return result;
     }
 
-    public Collection<ReservaEntity> getReservasByIdusuario() {
-        return reservasByIdusuario;
-    }
-
-    public void setReservasByIdusuario(Collection<ReservaEntity> reservasByIdusuario) {
-        this.reservasByIdusuario = reservasByIdusuario;
-    }
 }
