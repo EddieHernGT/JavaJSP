@@ -12,5 +12,9 @@ public class PruebaHibernate {
         }
         AulaEntity aula=aulaDao.obtenerAula(2);
         System.out.println(aula.toString());
+
+        //aulaDao.crearAula(100,"Aula de prueba",100,"Esto es un aula de prueba");
+        //aulaDao.actualizarAula(11,"Aula de prueba modificado",50,"Prueba de aula actualizada");
+        aulaDao.borrarAula(11);
     }
 }

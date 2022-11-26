@@ -49,4 +49,75 @@ public class AulaDAO {
         }
         return aula;
     }
+    public boolean crearAula(int numaula,String nombre,int capacidad,String descripcion){
+        SessionFactory sessFac= HibernateUtil.getSessionFactory();
+        Session session=sessFac.getCurrentSession();
+        Transaction tr=null;
+        try{
+            tr=session.beginTransaction();
+            AulaEntity aula=new AulaEntity();
+            aula.setNumAula(numaula);
+            aula.setNombre(nombre);
+            aula.setCapacidad(capacidad);
+            aula.setDescripcion(descripcion);
+
+            session.save(aula);
+            tr.commit();
+            return true;
+        }catch (Exception e){
+            if(tr!=null){
+                tr.rollback();
+            }
+            e.printStackTrace();
+        }finally {
+            session.close();
+            sessFac.close();
+        }
+        return false;
+    }
+    public boolean actualizarAula(int numaula,String nombre,int capacidad,String descripcion){
+        SessionFactory sessFac= HibernateUtil.getSessionFactory();
+        Session session=sessFac.getCurrentSession();
+        Transaction tr=null;
+        try{
+            tr=session.beginTransaction();
+            AulaEntity aula=session.get(AulaEntity.class,numaula);
+            aula.setNombre(nombre);
+            aula.setCapacidad(capacidad);
+            aula.setDescripcion(descripcion);
+            session.update(aula);
+            tr.commit();
+            return true;
+        }catch (Exception e){
+            if(tr!=null){
+                tr.rollback();
+            }
+            e.printStackTrace();
+        }finally {
+            session.close();
+            sessFac.close();
+        }
+        return false;
+    }
+    public boolean borrarAula(int numaula){
+        SessionFactory sessFac= HibernateUtil.getSessionFactory();
+        Session session=sessFac.getCurrentSession();
+        Transaction tr=null;
+        try{
+            tr=session.beginTransaction();
+            AulaEntity aula=session.get(AulaEntity.class,numaula);
+            session.delete(aula);
+            tr.commit();
+            return true;
+        }catch (Exception e){
+            if(tr!=null){
+                tr.rollback();
+            }
+            e.printStackTrace();
+        }finally {
+            session.close();
+            sessFac.close();
+        }
+        return false;
+    }
 }
